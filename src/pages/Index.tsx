@@ -307,7 +307,7 @@ export default function Index() {
                 className="text-sm md:text-base lg:text-lg text-gray-300 mb-8 leading-relaxed"
               >
                 Transforming complex data into actionable insights for banking excellence and business growth. 
-                Specializing in portfolio risk management, business intelligence, and data-driven decision making.
+                Specializing in Data analysing, portfolio risk management, business intelligence, and data-driven decision making.
               </motion.p>
 
               <motion.div
@@ -428,7 +428,7 @@ export default function Index() {
               className="space-y-6"
             >
               <motion.p variants={staggerItem} className="text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                I am a dedicated Portfolio Monitoring Officer at Bank of Kigali with a strong background in data
+                I am a dedicated Data Analysist & Portfolio Monitoring  at Bank of Kigali with a strong background in data
                 analysis, business intelligence, and financial services. Currently pursuing an MBA at the University
                 of Rwanda, I combine academic excellence with practical expertise.
               </motion.p>
