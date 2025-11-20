@@ -894,7 +894,7 @@ export default function Index() {
       <footer className="bg-slate-950 text-white py-8 border-t border-purple-900/30">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-gray-400 text-sm md:text-base">
-            © 2024 AKIMANA Etienne. All rights reserved. Built with passion and precision. || <a href="https://tuyambaze-gilbert.vercel.app" className="text-gray-300 hover:text-orange-500" target="_blank" rel="noopener noreferrer">developed by Gilbert TUYAMBAZE, -> click here to visit me too </a>
+            © 2024 AKIMANA Etienne. All rights reserved. Built with passion and precision. || <a href="https://tuyambaze-gilbert.vercel.app" className="text-gray-300 hover:text-orange-500" target="_blank" rel="noopener noreferrer">developed by Gilbert TUYAMBAZE, click here to visit me too </a>
           </p>
         </div>
       </footer>
