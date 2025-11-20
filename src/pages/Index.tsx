@@ -113,12 +113,13 @@ export default function Index() {
 
   const experiences = [
     {
-      title: 'Portfolio Monitoring Officer',
-      company: 'Bank of Kigali',
-      period: '2024 - Present',
-      description: 'Leading portfolio analysis and risk assessment for banking operations, managing multi-million dollar portfolios with advanced analytics.',
-      achievements: ['Reduced portfolio risk by 25%', 'Implemented automated reporting systems', 'Led team of 3 analysts'],
+       title: 'Business Data Analyst',
+       company: 'Bank of Kigali',
+       period: '2024 - Present',
+       description: 'Driving business insights and data-driven decision-making through advanced analytics, dashboard development, and performance monitoring across key banking operations.',
+       achievements: [ 'Improved data accuracy and reporting efficiency by 30%', 'Developed automated dashboards for real-time business performance tracking','Identified cost-saving opportunities through trend and portfolio analysis' ],
     },
+
     {
       title: 'Teacher',
       company: 'E.S. Bumbogo',
@@ -292,7 +293,7 @@ export default function Index() {
               >
                 <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-cyan-300 font-semibold min-h-[3rem] flex items-center">
                   <TypingAnimation
-                    texts={['Data Analyst', 'Portfolio Monitoring Officer', 'Agribusiness Insights Specialist', 'Business Intelligence Expert']}
+                    texts={['Data Analyst', 'Portfolio Monitoring ', 'Agribusiness Insights Specialist', 'Business Intelligence Expert']}
                     className="text-cyan-300"
                     typingSpeed={70}
                     deletingSpeed={35}
