@@ -428,7 +428,7 @@ export default function Index() {
               className="space-y-6"
             >
               <motion.p variants={staggerItem} className="text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                I am a dedicated Data Analysist at Bank of Kigali with a strong background in data
+                I am a dedicated Business Data Analyst at Bank of Kigali with a strong background in data
                 analysis, business intelligence, and financial services. Currently pursuing an MBA at the University
                 of Rwanda, I combine academic excellence with practical expertise.
               </motion.p>
