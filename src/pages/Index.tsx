@@ -861,6 +861,7 @@ export default function Index() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                  <form>
                   <div>
                     <Input
                       placeholder="Your Name"
@@ -881,9 +882,10 @@ export default function Index() {
                       className="glass border-white/30 text-white placeholder:text-cyan-200/70"
                     />
                   </div>
-                  <Button className="w-full gradient-purple-cyan text-white hover:scale-105 transition-transform" size="lg">
+                  <Button type="submit" className="w-full gradient-purple-cyan text-white hover:scale-105 transition-transform" size="lg">
                     Send Message
                   </Button>
+                  </form>
                 </CardContent>
               </Card>
             </motion.div>
