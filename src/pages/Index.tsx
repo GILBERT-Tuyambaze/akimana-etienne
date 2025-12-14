@@ -15,6 +15,7 @@ import { AnimatedChart } from '@/components/ui/animated-chart';
 import { LiveCounter } from '@/components/ui/live-counter';
 import { LineChartAnimated } from '@/components/ui/line-chart-animated';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
+import PWAInstallBanner from '@/components/PWAInstallBanner'
 import {
   fadeInUp,
   slideInLeft,
@@ -893,6 +894,8 @@ export default function Index() {
         </div>
       </section>
 
+      <PWAInstallBanner />
+      
       {/* Footer */}
       <footer className="bg-slate-950 text-white py-8 border-t border-purple-900/30">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
