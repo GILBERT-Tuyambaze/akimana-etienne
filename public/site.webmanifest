@@ -1,7 +1,6 @@
 {"name":"",
-"short_name":"",rgba(170, 150, 150, 1)rgba(119, 107, 107, 1)rgba(100, 94, 94, 1)rgba(100, 94, 94, 1)rgba(101, 79, 79, 1)rgba(96, 87, 87, 1)rgba(86, 83, 83, 1)rgba(111, 107, 107, 1)rgba(60, 58, 58, 1)rgba(84, 76, 76, 1)rgba(76, 72, 72, 1)rgba(59, 57, 57, 1)hsla(0, 2%, 23%, 1.00)hsla(0, 0%, 100%, 1.00)hsla(0, 4%, 31%, 1.00)hsla(0, 0%, 100%, 1.00)hsla(0, 0%, 100%, 1.00)#ffffffff#605b5bff#434141ffrgba(67, 65, 65, 1)hsla(0, 2%, 26%, 1.00)#434141ff
-"icons":[{"src":"/android-chrome-192x192.png","
-sizes":"192x192","type":"image/png"},
+"short_name":"",
+"icons":[{"src":"/android-chrome-192x192.png","sizes":"192x192","type":"image/png"},
 {"src":"/android-chrome-512x512.png","sizes":"512x512","type":"image/png"}],
 "theme_color":"linear-gradient(135deg, #272330ff 0%, #439babff 50%, #1e035eff 100%)",
 "background_color":"linear-gradient(135deg, #272330ff 0%, #439babff 50%, #1e035eff 100%)",
