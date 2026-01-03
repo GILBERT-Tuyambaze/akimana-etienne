@@ -47,6 +47,14 @@ export default function Index() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [heroRef, heroInView] = useInView({ threshold: 0.1, triggerOnce: false });
   const [aboutRef, aboutInView] = useInView({ threshold: 0.1, triggerOnce: false });
   const [skillsRef, skillsInView] = useInView({ threshold: 0.1, triggerOnce: false });
@@ -71,6 +79,41 @@ export default function Index() {
         }
       }
     };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const data = {
+      access_key: '06a5300d-cfd3-474f-b17f-5781fb74e62b',
+      name: formData.name,
+      email: formData.email,
+      message: formData.message
+    };
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      console.log('Form response:', result);
+
+      if (result.success) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setIsSubmitted(false), 9000);
+      } else {
+        alert('Error submitting form, please try again.');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Error submitting form, please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -861,31 +904,51 @@ export default function Index() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <form>
+                  isSubmitted ? (
+                <div className="text-center py-12">
+                  <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
+                  <p className="text-muted-foreground">Thank you for reaching out. I'll get back to you soon.</p>
+                </div>
+              ) : (
+                  <form  onSubmit={handleSubmit} >
                   <div>
                     <Input
-                      placeholder="Your Name"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="Your name"
+                      required
                       className="glass border-white/30 text-white placeholder:text-cyan-200/70"
-                    />
+                      />
                   </div>
                   <div>
                     <Input
+                      id="email"
+                      name="email"
                       type="email"
-                      placeholder="Your Email"
+                      value={formData.email}
+                      onChange={handleInputChange}
                       className="glass border-white/30 text-white placeholder:text-cyan-200/70"
                     />
                   </div>
                   <div>
                     <Textarea
                       placeholder="Your Message"
+                      name="message"
                       rows={5}
                       className="glass border-white/30 text-white placeholder:text-cyan-200/70"
                     />
                   </div>
-                  <Button type="submit" className="w-full gradient-purple-cyan text-white hover:scale-105 transition-transform" size="lg">
-                    Send Message
+                  <Button type="submit" className="w-full gradient-purple-cyan text-white hover:scale-105 transition-transform" size="lg"  disabled={isSubmitting}>
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                    </span>
                   </Button>
                   </form>
+                  )
                 </CardContent>
               </Card>
             </motion.div>
