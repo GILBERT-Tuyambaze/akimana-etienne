@@ -41,6 +41,8 @@ import {
   Users,
   Target,
   Zap,
+  CheckCircle,
+  Send,
 } from 'lucide-react';
 
 export default function Index() {
@@ -63,24 +65,8 @@ export default function Index() {
   const [educationRef, educationInView] = useInView({ threshold: 0.1, triggerOnce: false });
   const [contactRef, contactInView] = useInView({ threshold: 0.1, triggerOnce: false });
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'education', 'contact'];
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
+  // moved out of useEffect: submit handler
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -114,6 +100,29 @@ export default function Index() {
       setIsSubmitting(false);
     }
   };
+
+  // input change handler (was missing)
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'education', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -904,51 +913,54 @@ export default function Index() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  isSubmitted ? (
-                <div className="text-center py-12">
-                  <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
-                  <p className="text-muted-foreground">Thank you for reaching out. I'll get back to you soon.</p>
-                </div>
-              ) : (
-                  <form  onSubmit={handleSubmit} >
-                  <div>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      placeholder="Your name"
-                      required
-                      className="glass border-white/30 text-white placeholder:text-cyan-200/70"
-                      />
-                  </div>
-                  <div>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      className="glass border-white/30 text-white placeholder:text-cyan-200/70"
-                    />
-                  </div>
-                  <div>
-                    <Textarea
-                      placeholder="Your Message"
-                      name="message"
-                      rows={5}
-                      className="glass border-white/30 text-white placeholder:text-cyan-200/70"
-                    />
-                  </div>
-                  <Button type="submit" className="w-full gradient-purple-cyan text-white hover:scale-105 transition-transform" size="lg"  disabled={isSubmitting}>
-                    <span className="relative z-10 flex items-center justify-center gap-2">
-                      <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                      {isSubmitting ? 'Sending...' : 'Send Message'}
-                    </span>
-                  </Button>
-                  </form>
-                  )
+                  {isSubmitted ? (
+                    <div className="text-center py-12">
+                      <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                      <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
+                      <p className="text-muted-foreground">Thank you for reaching out. I'll get back to you soon.</p>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit}>
+                      <div>
+                        <Input
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          placeholder="Your name"
+                          required
+                          className="glass border-white/30 text-white placeholder:text-cyan-200/70"
+                        />
+                      </div>
+                      <div>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          placeholder="Your email"
+                          className="glass border-white/30 text-white placeholder:text-cyan-200/70"
+                        />
+                      </div>
+                      <div>
+                        <Textarea
+                          placeholder="Your Message"
+                          name="message"
+                          rows={5}
+                          value={formData.message}
+                          onChange={handleInputChange}
+                          className="glass border-white/30 text-white placeholder:text-cyan-200/70"
+                        />
+                      </div>
+                      <Button type="submit" className="w-full gradient-purple-cyan text-white hover:scale-105 transition-transform" size="lg" disabled={isSubmitting}>
+                        <span className="relative z-10 flex items-center justify-center gap-2">
+                          <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                          {isSubmitting ? 'Sending...' : 'Send Message'}
+                        </span>
+                      </Button>
+                    </form>
+                  )}
                 </CardContent>
               </Card>
             </motion.div>
@@ -969,3 +981,4 @@ export default function Index() {
     </div>
   );
 }
+
